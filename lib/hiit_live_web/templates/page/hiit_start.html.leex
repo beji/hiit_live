@@ -1,0 +1,15 @@
+<form phx-submit="hiit-form-update">
+  <%= for {{_, time, name}, i} <- Enum.with_index(@timers) do %>
+    <label>
+      name
+      <input type="text", value="<%= name %>", name="name-time-<%= i %>" placeholder="Name here...">
+    </label>
+    <label>
+      Time in seconds
+      <input type="number" value="<%= time %>" name="time-<%= i %>" min="1" placeholder="Time in seconds">
+    </label>
+    <hr>
+  <% end %>
+  <input type="submit" value="gogogo">
+  <button phx-click="add-timer">Add timer</button>
+</form>

@@ -1,0 +1,16 @@
+<%= if @done do %>
+  <h1>Done!</h1>
+<% end %>
+<form phx-submit="hiit-form-running">
+  <%= for {{time, original, name}, i} <- Enum.with_index(@timers) do %>
+      <%
+       nameclass = if i == @activetimer, do: "active", else: ""
+      %>
+        <div class="<%= nameclass %>"><%= name %></div>
+        <div><%= time / 1000 %></div>
+        <progress value="<%= time %>" max="<%= original * 1000 %>"></progress>
+    <% end %>
+
+  <aside><%= @lasttick %></aside>
+  <input type="submit" value="reset" />
+</form>

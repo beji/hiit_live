@@ -1,15 +1,18 @@
-<form phx-submit="hiit-form-update">
-  <%= for {{_, time, name}, i} <- Enum.with_index(@timers) do %>
-    <label>
+<form phx-submit="hiit-start" phx-change="hiit-update">
+<%= for {{_, time, name}, i} <- Enum.with_index(@timers) do %>
+  <div class="row">
+    <label class="column">
       name
       <input type="text", value="<%= name %>", name="name-time-<%= i %>" placeholder="Name here...">
     </label>
-    <label>
+    <label class="column">
       Time in seconds
       <input type="number" value="<%= time %>" name="time-<%= i %>" min="1" placeholder="Time in seconds">
     </label>
-    <hr>
-  <% end %>
-  <input type="submit" value="gogogo">
-  <button phx-click="add-timer">Add timer</button>
+    </div>
+    <button class="button" phx-click="delete-timer" phx-value="<%= i %>">X</button>
+  <hr>
+<% end %>
+<input class="button" type="submit" value="gogogo">
+<button class="button button-outline" phx-click="add-timer">Add timer</button>
 </form>
